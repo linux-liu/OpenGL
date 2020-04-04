@@ -18,19 +18,18 @@
 
 class EglThread {
 public:
-    pthread_t pthread=-1;
+    pthread_t pthread;
     pthread_cond_t pthreadCond;
     pthread_mutex_t pthreadMutex;
     EGLNativeWindowType nativeWindow=NULL;
 
     int surfaceWidth=0;
     int surfaceHeight=0;
-    bool  isCreate= false;
-    bool  isChange= false;
-    bool  isExit= false;
-    bool  isStart= false;
-    bool  isChangeFilter= false;
-
+    volatile bool  isCreate= false;
+    volatile  bool  isChange= false;
+    volatile bool  isExit= false;
+    volatile bool  isStart= false;
+    volatile bool  isChangeFilter= false;
     typedef void (*OnCreate)(void *ctx);
 
     typedef void (*OnChange)(int w,int h,void *ctx);
@@ -56,7 +55,6 @@ public:
 
     void *onChangeFilterCtx=NULL;
     int rendType=OPENGL_RENDAR_AUTO;
-
 
 public:
     EglThread();

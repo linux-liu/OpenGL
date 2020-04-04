@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
         view=findViewById(R.id.view);
         nativeOpengl = new OpenGlUtils();
         view.setNativeOpengl(nativeOpengl);
-        view.setOnInitListener(new LxSurfaceView.OnInitListener() {
+      /*  view.setOnInitListener(new LxSurfaceView.OnInitListener() {
             @Override
             public void init() {
                setTexture();
             }
-        });
+        });*/
 
 
     }

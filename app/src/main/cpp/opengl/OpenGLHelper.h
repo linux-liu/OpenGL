@@ -30,6 +30,7 @@ public:
 
     void *v=NULL;
 
+
 public:
     OpenGLHelper();
     ~OpenGLHelper();

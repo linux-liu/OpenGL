@@ -133,18 +133,20 @@ void OpenGLYUVFilter::onDraw() {
             glActiveTexture(GL_TEXTURE0);
             //重新绑定
             glBindTexture(GL_TEXTURE_2D, textureIds[0]);
+
+            glUniform1i(sampler_y, 0);
             glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, pic_width, pic_height, 0, GL_LUMINANCE,
                          GL_UNSIGNED_BYTE, y);
-            glUniform1i(sampler_y, 0);
         }
         if (u != NULL) {
             //激活设置纹理,要一致1
             glActiveTexture(GL_TEXTURE1);
             //重新绑定
             glBindTexture(GL_TEXTURE_2D, textureIds[1]);
+
+            glUniform1i(sampler_u, 1);
             glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, pic_width / 2, pic_height / 2, 0,
                          GL_LUMINANCE, GL_UNSIGNED_BYTE, u);
-            glUniform1i(sampler_u, 1);
         }
 
         if (v != NULL) {
@@ -152,9 +154,10 @@ void OpenGLYUVFilter::onDraw() {
             glActiveTexture(GL_TEXTURE2);
             //重新绑定
             glBindTexture(GL_TEXTURE_2D, textureIds[2]);
+
+            glUniform1i(sampler_v, 2);
             glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, pic_width / 2, pic_height / 2, 0,
                          GL_LUMINANCE, GL_UNSIGNED_BYTE, v);
-            glUniform1i(sampler_v, 2);
         }
 
 

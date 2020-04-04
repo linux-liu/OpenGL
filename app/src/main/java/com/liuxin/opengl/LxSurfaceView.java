@@ -2,6 +2,8 @@ package com.liuxin.opengl;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -35,6 +37,7 @@ public class LxSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         if(nativeOpengl != null)
         {
+            Log.e("opgengl","surfaceCreated");
             nativeOpengl.onSurfaceCreated(surfaceHolder.getSurface());
         }
         if(listener!=null){
@@ -45,7 +48,7 @@ public class LxSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
         if(nativeOpengl != null)
-        {
+        {  Log.e("opgengl","surfaceChanged");
             nativeOpengl.onSurfaceChanged(width, height);
         }
     }
@@ -53,8 +56,17 @@ public class LxSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         if(nativeOpengl != null)
+
         {
+            if(surfaceHolder!=null){
+               Surface surface= surfaceHolder.getSurface();
+               if(surface!=null){
+                   Log.e("opgengl","surface不为空");
+               }
+            }
+            Log.e("opgengl","surfaceDestroyed");
             nativeOpengl.onSurfaceDestory();
+
         }
     }
 

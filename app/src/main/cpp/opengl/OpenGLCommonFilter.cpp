@@ -94,18 +94,14 @@ void OpenGLCommonFilter::onDraw() {
     //一定要写
     glUseProgram(program);
 
-
-
-
-
     //矩阵变换关联
-    glUniformMatrix4fv(uMatrixs,1,GL_FALSE,matriex);
+    glUniformMatrix4fv(uMatrixs,1,GL_TRUE,matriex);
     //激活设置纹理,要一致0
     glActiveTexture(GL_TEXTURE5);
-    glUniform1i(sTexture,5);
+
     //重新绑定
     glBindTexture(GL_TEXTURE_2D,textureId);
-
+    glUniform1i(sTexture,5);
     if(pixels!=NULL){
         if(ISDEBUG){
             ALOGD("绘制中");
@@ -160,6 +156,10 @@ void OpenGLCommonFilter::setMatriex() {
 }
 
 void OpenGLCommonFilter::onDestory() {
+    if(ISDEBUG){
+        ALOGD("opengl CommonFilter onDestory");
+    }
+
     if(textureId>0){
         glDeleteTextures(1,&textureId);
     }
